@@ -72,32 +72,105 @@ body {
 }
 
 @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Nombre */
+.hero-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 10vw, 6rem);   /* responsive */
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    margin-bottom: 0.6rem;
+}
+
+/* Título / rol */
+.hero-role {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 2.2rem;
+    animation: fadeUp 1s 0.2s ease both;
+}
+
+/* ── SECCIÓN INTRODUCCIÓN ── */
+.introduction {
+    padding: 6rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Columna Izquierda */
+.intro-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.intro-text h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    color: #55a663; /* Un verde similar al del diseño */
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
+}
+
+.intro-text p {
+    color: #5c677d; /* Gris para el texto */
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+/* Columna Derecha */
+.intro-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.intro-profile .age {
+    color: #55a663; /* Verde para la subtítutlo */
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+}
+
+.profile-img-placeholder,
+.profile-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #e2e8f0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    /* Estilos extra por si es solo un contenedor div vacío */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* color: #a0aec0; */
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .introduction {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+        padding: 4rem 1.5rem;
     }
-
-    /* Nombre */
-    .hero-name {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: clamp(3rem, 10vw, 6rem);   /* responsive */
-      color: var(--white);
-      line-height: 1.05;
-      letter-spacing: -1px;
-      text-shadow: 0 4px 24px rgba(0,0,0,0.5);
-      margin-bottom: 0.6rem;
-    }
-
-    /* Título / rol */
-    .hero-role {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
-      font-size: clamp(1.1rem, 3vw, 1.6rem);
-      color: var(--accent);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 2.2rem;
-      animation: fadeUp 1s 0.2s ease both;
-    }
-
-
+}
