@@ -3,40 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp - Mensajeria privada y segura</title>
+    <!-- Puede que sea la fuenmte oficial de WhatsApp -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
 </head>
+
 <body>
-    <section class="hero">
-        <!-- MenuHamburgesa -->
-        <nav class="navbar">
-            <button class="hamburger" aria-label="Menu">
+    <!-- BARRA DE NAVEGACION SUPERIOR -->
+    <header id="navbar">
+        <nav class="nav-container">
+            <!-- LOGO -->
+            <a href="#" class="nav-logo">
+                <svg width="120" height="28" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.8 0C6.2 0 0 6.2 0 13.8c0 2.4.6 4.7 1.8 6.7L0 28l7.7-1.8c1.9 1 4.1 1.6 6.4 1.6 7.6 0 13.8-6.2 13.8-13.8S21.4 0 13.8 0z" fill="#25D366"/>
+                    <path d="M20.5 17.2c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.3.2-.6 0-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5 0-.2-.7-1.8-1-2.4-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.2.2 2 3 4.8 4.2.7.3 1.2.4 1.6.5.7.2 1.3.2 1.8.1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5z" fill="white"/>
+                    <text x="32" y="20" font-family="Inter, Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#111b21">WhatsApp</text>
+                </svg>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <button class="nav-link dropdown-toggle">
+                        Características
+                        <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Llamadas</a>
+                        <a href="#" class="dropdown-item">Mensajes</a>
+                        <a href="#" class="dropdown-item">Grupos</a>
+                        <a href="#" class="dropdown-item">Estados</a>
+                        <a href="#" class="dropdown-item">Channels</a>
+                        <a href="#" class="dropdown-item">MetaIA</a>
+                        <a href="#" class="dropdown-item">Seguridad</a>
+                    </div>
+                </li>
+
+                <li class="nav-item"><a href="#" class="nav-link">Privacidad</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Centro de ayuda</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Para negocios</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="btn-primary">Iniciar sesión</button>
+                <button class="btn-outline">Registrarse</button>
+            </div>
+
+            <!-- BOTÓN HAMBURGUESA (solo visible en móvil) -->
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </nav>
-        <!-- Contenido central Hero -->
-        <div class="hero-content">
-            <h1 class="hero-name">Rodrigo Miranda Diaz</h1>
-            <p class="hero-role">Desarrollador Web Junior</p>
-        </div>
-    </section>
-    <section class="introduction">
-        <div class="intro-text">
-            <h2>Yo programo,<br>luego existo.</h2>
-            <p>
-                Soy Rodrigo Miranda Diaz, un desarrollador web junior con experiencia en la creación de sitios web y aplicaciones web. Me gusta aprender nuevas tecnologías y aplicarlas en mis proyectos.
-            </p>
-            <p>
-                "Para mi la web es algo hermoso, donde puedes dar a conocer lo que piensas y eres capaz de crear cosas increibles para todo el mundo. Cada línea de código que escribo es como pintar sobre un lienzo."
-            </p>
-        </div>
-        <div class="intro-profile">
-            <p class="age">21 años</p>
-            <div class="profile-img-placeholder">
+    </header>
+
+    <!-- SECCION HERO -->
+    <section id="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <!-- COLUMNA IZQUIERDA -->
+                <h1 class="hero-title">Mensajes <br>privados</h1>
+                <p class="hero-subtitle">
+                    Mensajes y llamadas gratis de forma simple, confiable y privada, disponible en todo el mundo
+                </p>
+
+                <!-- BOTONES DE ACCION -->
+                <div class="hero-actions">
+                    <a href="#" class="btn-primary">Iniciar sesion</a>
+                    <a href="#" class="btn-outline">Descargar</a>
+                </div>
+
+                <!-- Separador -->
+                <div class="hero-divider">
+                    <span>Also available on</span>
+                </div>
+
+                <!-- Link de descarga para desktop -->
+                <a href="#" class="hero-desktop-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                    <path d="M8 21h8M12 17v4"/
+                    >
+                    </svg>
+                    WhatsApp for Desktop
+                </a>
+
+                <!-- COLUMNA DERECHA: Imagen con elementos flotantes -->
+                <div class="hero-image-wrapper">
+
+                <!-- Imagen principal -->
+                <div class="hero-phone-mockup">
+                    <img
+                    src="https://scontent.whatsapp.net/v/t39.8562-34/316546300_547692113846445_7299710494491288098_n.png?stp=dst-webp&ccb=1-7&_nc_sid=73b08c&_nc_ohc=jnE6MH61qdIQ7kNvwHixkHT&_nc_oc=AdkiTLy4NtoL92s5Ic99sxz79tIb0j2wyj8hb2qgBXsaWXEGuAbXkDJkErSV_5cS9yM&_nc_zt=3&_nc_ht=scontent.whatsapp.net&oh=01_Q5Aa4AHuchjIimom26-HGbAqZmkjkmYlbzC3lrbXbbcIWi9K4A&oe=69B691E5"
+                    alt="Madre e hija usando WhatsApp"
+                    class="hero-main-img"
+                    />
+                </div>
+
+                <!-- Burbuja flotante 1: mensaje de texto -->
+                <div class="hero-bubble bubble-message">
+                    <div class="bubble-avatar">👩</div>
+                    <div class="bubble-body">
+                    <span class="bubble-name">Mamá</span>
+                    <span class="bubble-text">Buenos días! ☀️</span>
+                    </div>
+                    <span class="bubble-time">9:41 AM ✓✓</span>
+                </div>
+
+                <!-- Burbuja flotante 2: reacción -->
+                <div class="hero-bubble bubble-reaction">
+                    <span class="bubble-emoji">❤️</span>
+                    <span class="bubble-react-text">Reaccionaste al mensaje</span>
+                </div>
+
+                <!-- Burbuja flotante 3: llamada -->
+                <div class="hero-bubble bubble-call">
+                    <div class="bubble-call-icon">📞</div>
+                    <div class="bubble-call-info">
+                    <span class="bubble-name">Video llamada</span>
+                    <span class="bubble-text">Cifrado de extremo a extremo</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
+
+    <!-- SECCION CARACTERISITCAS -->
+    <section id="features">
+        <!-- Bloque 1: Mensajería (imagen derecha) -->
+        <div class="feature-block">
+            <div class="feature-content">
+            <span class="feature-tag">Messaging</span>
+            <h2 class="feature-title">
+                With private messaging, you can be yourself
+            </h2>
+            <p class="feature-text">
+                Speak freely and feel close to the most important people in
+                your life, no matter where they are. Send messages, photos,
+                videos, voice notes and more.
+            </p>
+            <a href="#" class="feature-link">
+                Learn more
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            </div>
+            <div class="feature-image">
+            <div class="feature-img-bg bg-green"></div>
+            <img
+                src="https://scontent.whatsapp.net/v/t39.8562-34/472902085_9036161936482175_1983222485176306165_n.png?stp=dst-webp&ccb=1-7&_nc_sid=73b08c&_nc_ohc=2X9NzNeGonEQ7kNvwElrNmo&_nc_oc=AdkxWE0LKdDC62MQe6G5tUcoUJiVhyDNH6iRoZvsZowW6DIbw7_DfgpW0SHntXlLmP8&_nc_zt=3&_nc_ht=scontent.whatsapp.net&oh=01_Q5Aa4AFLyc2Lcc0JGjYYSY6DvayaP3CoHgEH_SNrzWOLV0lcFA&oe=69B6781C"
+                alt="Mensajes en WhatsApp"
+            />
+            </div>
+        </div>
+
+        <!-- Bloque 2: Llamadas (imagen izquierda — .reverse) -->
+        <div class="feature-block reverse">
+            <div class="feature-content">
+            <span class="feature-tag">Calling</span>
+            <h2 class="feature-title">
+                Never miss a moment with voice and video calls
+            </h2>
+            <p class="feature-text">
+                From a group call to classmates to a quick call with mom,
+                feel like you're in the same room with crystal-clear
+                voice and video calls.
+            </p>
+            <a href="#" class="feature-link">
+                Learn more
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            </div>
+            <div class="feature-image">
+            <div class="feature-img-bg bg-blue"></div>
+            <img
+                src="https://scontent.whatsapp.net/v/t39.8562-34/472770474_998885868928301_7820026646601892106_n.png?stp=dst-webp&ccb=1-7&_nc_sid=73b08c&_nc_ohc=cGM2t_SRFBUQ7kNvwENOGcp&_nc_oc=AdmqeHxtsyoTEuHQe2rjIn3WAlsXunvoMt8RVHcKt2_A15XjetbL-jE6CXRoj30MYFA&_nc_zt=3&_nc_ht=scontent.whatsapp.net&oh=01_Q5Aa4AH4n-5D1CtCU0zifzwzZ6-6AXtlUs2wkMbP8iv64kBAnQ&oe=69B69B5E"
+                alt="Videollamada en WhatsApp"
+            />
+            </div>
+        </div>
+
+        <!-- Bloque 3: Privacidad (imagen derecha) -->
+        <div class="feature-block">
+            <div class="feature-content">
+            <span class="feature-tag">Privacy</span>
+            <h2 class="feature-title">
+                Speak <em>freely</em> with end-to-end encryption
+            </h2>
+            <p class="feature-text">
+                Your personal messages and calls are secured so only you
+                and the person you're talking to can read or listen to them.
+                Not even WhatsApp can access them.
+            </p>
+            <a href="#" class="feature-link">
+                Learn more
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            </div>
+            <div class="feature-image">
+            <div class="feature-img-bg bg-purple"></div>
+            <img
+                src="https://scontent.whatsapp.net/v/t39.8562-34/472781340_974551431241002_2872185955183231825_n.png?stp=dst-webp&ccb=1-7&_nc_sid=73b08c&_nc_ohc=P3W7JxeolDMQ7kNvwGTYStG&_nc_oc=AdlQqpmRRabzLsgvi8ZM-JxlgPuHDfzgisqQm-Xe01KIci2S_hf1v-aL-vsZYYCMDPc&_nc_zt=3&_nc_ht=scontent.whatsapp.net&oh=01_Q5Aa4AEQyVmzwbU8Wgpmz_Cxs1rXp-UwOi0KuFr6aEGnj0OCeg&oe=69B67C55"
+                alt="Mensajes privados en WhatsApp"
+            />
+            </div>
+        </div>
+
+        <!-- Bloque 4: Grupos (imagen izquierda — .reverse) -->
+        <div class="feature-block reverse">
+            <div class="feature-content">
+            <span class="feature-tag">Groups</span>
+            <h2 class="feature-title">
+                Keep in touch with your groups
+            </h2>
+            <p class="feature-text">
+                Whether it's planning an outing with friends or simply
+                staying on top of your family chats, group conversations
+                should feel effortless.
+            </p>
+            <a href="#" class="feature-link">
+                Learn more
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            </div>
+            <div class="feature-image">
+            <div class="feature-img-bg bg-yellow"></div>
+            <img
+                src="https://scontent.whatsapp.net/v/t39.8562-34/473133701_1117947663095492_624070062160080759_n.png?stp=dst-webp&ccb=1-7&_nc_sid=73b08c&_nc_ohc=s9oElnlHM28Q7kNvwEx__7s&_nc_oc=AdkMFd-fVv_S3LUKKMljk9VK_nmPe0M_CsEl4QUQiIfMpSCAc8EY8L4HIvjjKY1tug8&_nc_zt=3&_nc_ht=scontent.whatsapp.net&oh=01_Q5Aa4AGaVVNGFC4iPTeA3qLVEIxa9uVR7Wuwr3xKJ4mxXKdjJA&oe=69B69D55"
+                alt="Grupos en WhatsApp"
+            />
+            </div>
+        </div>
+
+    </section>
+
+    <!-- SECCION PARA WHATSAPP BUSINESS -->
+    <section id="business">
+    
+    </section>
+
+    <!-- FOOTER -->
+    <section id="footer">
+
+    </section>
+
+    <script src="script.js"></script>
 </body>
+
 </html>

@@ -1,176 +1,638 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    /* Colores principales */
+    --color-green-primary: #00a884;   
+    --color-green-dark:    #008069;   
+    --color-green-light:   #d9fdd3;   
+    --color-teal-dark:     #111b21;   
+    
+    /* Colores de texto */
+    --color-text-dark:     #111b21;   /* Texto principal */
+    --color-text-medium:   #3b4a54;   /* Texto secundario */
+    --color-text-light:    #667781;   /* Texto tenue */
+    --color-white:         #ffffff;
+    
+    /* Colores de fondo */
+    --color-bg-page:       #ffffff;
+    --color-bg-light:      #f0f2f5;   /* Fondo gris claro de secciones */
+    --color-bg-dark:       #111b21;   /* Fondo oscuro del footer */
+    
+    /* Fuente */
+    --font-main: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    
+    /* Tamaños de fuente */
+    --text-sm:   0.875rem;   /* 14px */
+    --text-base: 1rem;       /* 16px */
+    --text-lg:   1.125rem;   /* 18px */
+    --text-xl:   1.5rem;     /* 24px */
+    --text-2xl:  2rem;       /* 32px */
+    --text-3xl:  2.5rem;     /* 40px */
+    --text-4xl:  3rem;       /* 48px */
+    
+    /* Espaciado */
+    --max-width: 1200px;     
+    --section-padding: 80px 24px;
 }
 
-:root {
-    --accent: #3de0a0;
-    --white:  #ffffff;
-    --dark:   rgba(0, 0, 0, 0.55);
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
+html {
+    scroll-behavior: smooth; /*Scroll suave al hacer clics en link internos*/
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    background: #111;
+    font-family: var(--font-main);
+    font-size: var(--text-base);
+    color: var(--color-text-dark);
+    background-color: var(--color-bg-page);
+    line-height: 1.6;
 }
 
-.hero {
-    position: relative;
-    width: 100%;
-    height: 100vh;               /* ocupa toda la pantalla */
-    min-height: 600px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url("media/hero.png");
-    background-size: cover;
-    background-position: center;
-    box-shadow: inset;
+/* Imagenes responsive por defecto */
+img {
+    max-width: 100%;
+    height: block;
 }
 
-.navbar {
-    position: absolute;
+/* Eliminamos decoracion de todos los lnks y listas */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* CLASES REUTILIZABLES */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Botón verde principal */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--color-green-primary);
+    color: var(--color-white);
+    padding: 12px 28px;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: var(--text-base);
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    /* background: none; */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-green-dark);
+}
+
+/* Botón con borde (outline) */
+.btn-outline {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--color-green-primary);
+    padding: 11px 28px;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: var(--text-base);
+    border: 2px solid var(--color-green-primary);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background-color: var(--color-green-primary);
+    color: var(--color-white);
+}
+
+/* NAVBAR */
+#navbar {
+    position: fixed;           /* Se queda fija arriba aunque hagas scroll */
     top: 0;
     left: 0;
     right: 0;
-    padding: 1.4rem 2rem;
-    display: flex;
-    justify-content: flex-end;
-    z-index: 10;
+    z-index: 1000;             /* Siempre encima de todo lo demás */
+    background-color: var(--color-white);
+    border-bottom: 1px solid #e9edef;
+    transition: box-shadow 0.3s ease;
 }
 
-.hamburger {
+/* Clase que agrega sombra cuando el usuario hace scroll */
+#navbar.scrolled {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;             /* Pone todo en fila */
+    align-items: center;       /* Centra verticalmente */
+    justify-content: space-between;  /* Logo | Links | Botones */
+}
+
+/* LOGO */
+.nav-logo {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
+    align-items: center;
+    flex-shrink: 0;            /* Evita que el logo se encoja */
+}
+
+/* LINKS */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-medium);
+    border-radius: 8px;
+    transition: color 0.2s, background-color 0.2s;
     background: none;
     border: none;
+    cursor: pointer;
+    font-family: var(--font-main);
+}
+
+.nav-link:hover {
+    color: var(--color-green-primary);
+    background-color: var(--color-bg-light);
+}
+
+/* Flecha del dropdown */
+.chevron {
+    transition: transform 0.2s ease;
+}
+
+/* MENÚ DESPLEGABLE */
+.nav-item {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: var(--color-white);
+    border: 1px solid #e9edef;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    padding: 8px;
+    min-width: 180px;
+    opacity: 0;                /* Invisible por defecto */
+    visibility: hidden;        /* No ocupa espacio ni es clickeable */
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
+    z-index: 100;
+}
+
+/* Cuando tiene la clase .open, se hace visible */
+.has-dropdown.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px 14px;
+    font-size: var(--text-sm);
+    color: var(--color-text-medium);
+    border-radius: 8px;
+    transition: background-color 0.15s;
+    }
+
+.dropdown-item:hover {
+    background-color: var(--color-bg-light);
+    color: var(--color-green-primary);
+}
+
+/* BOTONES DE ACCIÓN */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* Ajuste de tamaño para botones dentro de la navbar */
+.nav-actions .btn-primary,
+.nav-actions .btn-outline {
+    padding: 8px 20px;
+    font-size: var(--text-sm);
+}
+
+/* BOTÓN HAMBURGUESA — solo en móvil */
+.hamburger {
+    display: none;             /* Oculto en desktop */
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
 }
 
 .hamburger span {
     display: block;
-    width: 28px;
-    height: 3px;
-    background: var(--white);
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text-dark);
     border-radius: 2px;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
 }
 
-.hamburger:hover span { background: var(--accent); }
+/* Animación de hamburguesa → X al abrir */
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ── CONTENIDO CENTRAL ── */
-.hero-content {
-    position: relative;
-    z-index: 5;
-    text-align: center;
-    padding: 2rem;
-    animation: fadeUp 1s ease both;
+/* RESPONSIVO — en pantallas pequeñas */
+@media (max-width: 768px) {
+    .nav-links,
+    .nav-actions {
+        display: none;           /* Ocultamos el menú en móvil */
+    }
+
+    .hamburger {
+        display: flex;           /* Mostramos el botón hamburguesa */
+    }
 }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
+/* HERO SECTION */
+#hero {
+    /* margin-top compensa la navbar fija (64px de alto) */
+    margin-top: 64px;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #f0f9ff 100%);
+    overflow: hidden;          /* Evita que las burbujas generen scroll horizontal */
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
 }
 
-/* Nombre */
-.hero-name {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: clamp(3rem, 10vw, 6rem);   /* responsive */
-    color: var(--white);
-    line-height: 1.05;
-    letter-spacing: -1px;
-    text-shadow: 0 4px 24px rgba(0,0,0,0.5);
-    margin-bottom: 0.6rem;
-}
-
-/* Título / rol */
-.hero-role {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: clamp(1.1rem, 3vw, 1.6rem);
-    color: var(--accent);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 2.2rem;
-    animation: fadeUp 1s 0.2s ease both;
-}
-
-/* ── SECCIÓN INTRODUCCIÓN ── */
-.introduction {
-    padding: 6rem 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-    background-color: var(--white);
+.hero-container {
+    max-width: var(--max-width);
+        margin: 0 auto;
+    padding: 80px 24px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 1fr;   /* Dos columnas iguales */
     align-items: center;
+    gap: 60px;
 }
 
-/* Columna Izquierda */
-.intro-text {
+/* COLUMNA IZQUIERDA */
+.hero-content {
     display: flex;
     flex-direction: column;
+    gap: 24px;
 }
 
-.intro-text h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: clamp(2.5rem, 4vw, 4rem);
-    color: #55a663; /* Un verde similar al del diseño */
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);  /* Se adapta al tamaño de pantalla */
+    font-weight: 700;
+    color: var(--color-text-dark);
     line-height: 1.1;
-    margin-bottom: 2rem;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
 }
 
-.intro-text p {
-    color: #5c677d; /* Gris para el texto */
-    font-size: 1.05rem;
+.hero-subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-light);
+    max-width: 420px;
     line-height: 1.7;
-    margin-bottom: 1.5rem;
 }
 
-/* Columna Derecha */
-.intro-profile {
+.hero-actions {
     display: flex;
-    flex-direction: column;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Separador "Also available on" */
+.hero-divider {
+    display: flex;
     align-items: center;
-    text-align: center;
+    gap: 12px;
+    color: var(--color-text-light);
+    font-size: var(--text-sm);
 }
 
-.intro-profile .age {
-    color: #55a663; /* Verde para la subtítutlo */
-    font-weight: 500;
-    font-size: 1.1rem;
-    margin-bottom: 2.5rem;
+.hero-divider::before,
+.hero-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: #e9edef;
+    max-width: 60px;
 }
 
-.profile-img-placeholder,
-.profile-img {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: #e2e8f0;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    /* Estilos extra por si es solo un contenedor div vacío */
+/* Link de descarga desktop */
+.hero-desktop-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-green-primary);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    transition: gap 0.2s ease;
+}
+
+.hero-desktop-link:hover {
+    gap: 12px;
+}
+
+/* COLUMNA DERECHA: imagen */
+.hero-image-wrapper {
+    position: relative;        /* Necesario para posicionar las burbujas hijas */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* color: #a0aec0; */
-    font-weight: 600;
 }
 
+.hero-phone-mockup {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-main-img {
+    width: 100%;
+    max-width: 460px;
+    border-radius: 24px;
+    box-shadow: 0 32px 80px rgba(0, 168, 132, 0.15);
+}
+
+/* BURBUJAS FLOTANTES */
+.hero-bubble {
+    position: absolute;        /* Se posicionan relativas al hero-image-wrapper */
+    background: var(--color-white);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Animación de flotación suave */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-8px); }
+}
+
+/* Cada burbuja flota en un momento diferente */
+.bubble-message  { top: 10%;  left: -5%;  animation-delay: 0s; }
+.bubble-reaction { bottom: 25%; left: -8%; animation-delay: 0.8s; }
+.bubble-call     { top: 20%;  right: -5%; animation-delay: 1.6s; }
+
+.bubble-avatar {
+    font-size: 1.5rem;
+}
+
+.bubble-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.bubble-name {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-green-primary);
+}
+
+.bubble-text {
+    font-size: var(--text-sm);
+    color: var(--color-text-dark);
+}
+
+.bubble-time {
+    font-size: 0.7rem;
+    color: var(--color-text-light);
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.bubble-emoji {
+    font-size: 1.4rem;
+}
+
+.bubble-react-text {
+    font-size: var(--text-sm);
+    color: var(--color-text-medium);
+}
+
+.bubble-call-icon {
+    font-size: 1.4rem;
+}
+
+.bubble-call-info {
+    display: flex;
+    flex-direction: column;
+}
+
+/* RESPONSIVO */
 @media (max-width: 768px) {
-    .introduction {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+    .hero-container {
+        grid-template-columns: 1fr;   /* Una sola columna en móvil */
         text-align: center;
-        padding: 4rem 1.5rem;
+        padding: 48px 24px;
+        gap: 40px;
+    }
+
+    .hero-subtitle {
+        max-width: 100%;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-divider::before,
+    .hero-divider::after {
+        display: none;
+    }
+
+    .bubble-message  { top: 5%;   left: -2%; }
+    .bubble-reaction { bottom: 5%; left: -2%; }
+    .bubble-call     { top: 5%;   right: -2%; }
+}
+
+/* CARACTERISTICAS */
+#features {
+    background-color: var(--color-bg-page);
+}
+
+/* Cada bloque es una fila de dos columnas */
+.feature-block {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 100px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+    /* Por defecto: texto izquierda, imagen derecha */
+}
+
+/* .reverse voltea el orden: imagen izquierda, texto derecha */
+.feature-block.reverse {
+    direction: rtl;            /* Invierte la dirección del flujo */
+}
+
+/* Restituimos la dirección normal para el contenido interior */
+.feature-block.reverse .feature-content,
+.feature-block.reverse .feature-image {
+    direction: ltr;
+}
+
+/* Línea separadora entre bloques (excepto el primero) */
+.feature-block + .feature-block {
+    border-top: 1px solid #e9edef;
+}
+
+/* COLUMNA DE TEXTO */
+.feature-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Etiqueta pequeña de categoría */
+.feature-tag {
+    display: inline-block;
+    background-color: var(--color-green-light);
+    color: var(--color-green-dark);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    width: fit-content;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.feature-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text-dark);
+    line-height: 1.2;
+}
+
+/* La palabra en cursiva dentro del título */
+.feature-title em {
+    color: var(--color-green-primary);
+    font-style: italic;
+}
+
+.feature-text {
+    font-size: var(--text-lg);
+    color: var(--color-text-light);
+    line-height: 1.7;
+    max-width: 440px;
+}
+
+/* Link "Learn more" con flecha animada */
+.feature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-green-primary);
+    font-weight: 600;
+    font-size: var(--text-base);
+    width: fit-content;
+    transition: gap 0.2s ease;
+}
+
+.feature-link:hover {
+    gap: 14px;              /* La flecha se aleja al hacer hover */
+}
+
+/* COLUMNA DE IMAGEN */
+.feature-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Círculo de color decorativo detrás de la imagen */
+.feature-img-bg {
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.15;
+}
+
+.bg-green  { background-color: #00a884; }
+.bg-blue   { background-color: #0084ff; }
+.bg-purple { background-color: #8b5cf6; }
+.bg-yellow { background-color: #f59e0b; }
+
+.feature-image img {
+    position: relative;
+    z-index: 1;              /* Imagen encima del círculo */
+    width: 100%;
+    max-width: 460px;
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.feature-image img:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+}
+
+/* Animación de entrada al hacer scroll */
+.feature-block {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.feature-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .feature-block,
+    .feature-block.reverse {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        gap: 40px;
+        padding: 60px 24px;
+        text-align: center;
+    }
+
+    .feature-tag {
+        margin: 0 auto;
+    }
+
+    .feature-text {
+        max-width: 100%;
+    }
+
+    .feature-link {
+        margin: 0 auto;
     }
 }
