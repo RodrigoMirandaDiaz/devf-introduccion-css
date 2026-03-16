@@ -1,6 +1,6 @@
 :root {
     /* Colores principales */
-    --color-green-primary: #00a884;   
+    --color-green-primary: #25D366;   
     --color-green-dark:    #008069;   
     --color-green-light:   #d9fdd3;   
     --color-teal-dark:     #111b21;   
@@ -12,7 +12,7 @@
     --color-white:         #ffffff;
     
     /* Colores de fondo */
-    --color-bg-page:       #ffffff;
+    --color-bg-page:       #FCF5EB;
     --color-bg-light:      #f0f2f5;   /* Fondo gris claro de secciones */
     --color-bg-dark:       #111b21;   /* Fondo oscuro del footer */
     
@@ -29,7 +29,7 @@
     --text-4xl:  3rem;       /* 48px */
     
     /* Espaciado */
-    --max-width: 1200px;     
+    --max-width: 95vw;     
     --section-padding: 80px 24px;
 }
 
@@ -76,17 +76,19 @@ ul, ol {
 
 /* Botón verde principal */
 .btn-primary {
+    width: 170px;
+    height: 50px;
     display: inline-block;
-    background-color: var(--color-green-primary);
-    color: var(--color-white);
+    background-color: var(--color-white);
+    color: var(--color-text-dark);
     padding: 12px 28px;
-    border-radius: 24px;
-    font-weight: 600;
+    border-radius: 30px;
+    /* font-weight: 400; */
     font-size: var(--text-base);
     transition: background-color 0.2s ease;
     cursor: pointer;
     /* background: none; */
-    border: none;
+    border: 1px solid #000000;
 }
 
 .btn-primary:hover {
@@ -95,14 +97,16 @@ ul, ol {
 
 /* Botón con borde (outline) */
 .btn-outline {
+    width: 170px;
+    height: 50px;
     display: inline-block;
-    background-color: transparent;
-    color: var(--color-green-primary);
+    background-color: var(--color-green-primary);
+    color: var(--color-bg-dark);
     padding: 11px 28px;
-    border-radius: 24px;
-    font-weight: 600;
+    border-radius: 30px;
+    /* font-weight: 600; */
     font-size: var(--text-base);
-    border: 2px solid var(--color-green-primary);
+    border: 1px solid #000000;
     transition: all 0.2s ease;
     cursor: pointer;
 }
@@ -119,8 +123,10 @@ ul, ol {
     left: 0;
     right: 0;
     z-index: 1000;             /* Siempre encima de todo lo demás */
-    background-color: var(--color-white);
-    border-bottom: 1px solid #e9edef;
+    background-color: rgba(252, 245, 235, 0.75); /* --color-bg-page con 75% opacidad */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);         /* Soporte para Safari */
+    border-bottom: 1px solid rgba(233, 237, 239, 0.6);
     transition: box-shadow 0.3s ease;
 }
 
@@ -228,12 +234,13 @@ ul, ol {
     align-items: center;
     gap: 12px;
     flex-shrink: 0;
+    padding-left: 16px;
 }
 
 /* Ajuste de tamaño para botones dentro de la navbar */
 .nav-actions .btn-primary,
 .nav-actions .btn-outline {
-    padding: 8px 20px;
+    padding: 16px 28px;
     font-size: var(--text-sm);
 }
 
@@ -278,7 +285,8 @@ ul, ol {
 #hero {
     /* margin-top compensa la navbar fija (64px de alto) */
     margin-top: 64px;
-    background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #f0f9ff 100%);
+    padding: 30px 0 30px 0;
+    background: var(--color-bg-page);
     overflow: hidden;          /* Evita que las burbujas generen scroll horizontal */
     min-height: calc(100vh - 64px);
     display: flex;
@@ -286,13 +294,19 @@ ul, ol {
 }
 
 .hero-container {
+    width: 100%;              /* Se estira hasta el límite de max-width */
     max-width: var(--max-width);
-        margin: 0 auto;
+    margin: 0 auto;
     padding: 80px 24px;
+    border-radius: 25px;
     display: grid;
     grid-template-columns: 1fr 1fr;   /* Dos columnas iguales */
     align-items: center;
     gap: 60px;
+    background-image: url('../media/hero.png');
+    background-size: cover;       /* La imagen cubre todo el contenedor */
+    background-position: center;  /* Centrada */
+    background-repeat: no-repeat; /* Sin repetición */
 }
 
 /* COLUMNA IZQUIERDA */
@@ -304,15 +318,15 @@ ul, ol {
 
 .hero-title {
     font-size: clamp(2.5rem, 5vw, 4rem);  /* Se adapta al tamaño de pantalla */
-    font-weight: 700;
-    color: var(--color-text-dark);
+    font-weight: 400;
+    color: var(--color-white);
     line-height: 1.1;
     letter-spacing: -1px;
 }
 
 .hero-subtitle {
     font-size: var(--text-lg);
-    color: var(--color-text-light);
+    color: var(--color-white);
     max-width: 420px;
     line-height: 1.7;
 }
@@ -542,7 +556,7 @@ ul, ol {
 
 .feature-text {
     font-size: var(--text-lg);
-    color: var(--color-text-light);
+    color: var(--color-text-dark);
     line-height: 1.7;
     max-width: 440px;
 }
@@ -571,16 +585,6 @@ ul, ol {
     align-items: center;
 }
 
-/* Círculo de color decorativo detrás de la imagen */
-.feature-img-bg {
-    position: absolute;
-    width: 85%;
-    height: 85%;
-    border-radius: 50%;
-    z-index: 0;
-    opacity: 0.15;
-}
-
 .bg-green  { background-color: #00a884; }
 .bg-blue   { background-color: #0084ff; }
 .bg-purple { background-color: #8b5cf6; }
@@ -589,7 +593,7 @@ ul, ol {
 .feature-image img {
     position: relative;
     z-index: 1;              /* Imagen encima del círculo */
-    width: 100%;
+    width: 57%;
     max-width: 460px;
     border-radius: 20px;
     box-shadow: 0 24px 60px rgba(0,0,0,0.1);
