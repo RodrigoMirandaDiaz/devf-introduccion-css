@@ -79,61 +79,103 @@ ul, ol {
 .btn-primary {
     width: 170px;
     height: 50px;
-    display: inline-block;
-    background-color: var(--color-white);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     color: var(--color-text-dark);
     padding: 12px 28px;
     border-radius: 30px;
     /* font-weight: 400; */
     font-size: var(--text-base);
-    transition: background-color 0.2s ease;
+    transition: color 1s ease, border-color 1s ease;
     cursor: pointer;
     /* background: none; */
     border: 1px solid #000000;
-}
-
-.btn-primary:hover {
-    background-color: var(--color-green-dark);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: transparent;
 }
 
 /* Botón con borde (outline) */
 .btn-outline {
     width: 170px;
     height: 50px;
-    display: inline-block;
-    background-color: var(--color-green-primary);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     color: var(--color-bg-dark);
     padding: 11px 28px;
     border-radius: 30px;
     /* font-weight: 600; */
     font-size: var(--text-base);
     border: 1px solid #000000;
-    transition: all 0.2s ease;
+    transition: color 1s ease, border-color 1s ease;
     cursor: pointer;
-}
-
-.btn-outline:hover {
-    background-color: var(--color-green-primary);
-    color: var(--color-white);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: transparent;
 }
 
 .btn-outline-windows {
-    width: 340px;
+    width: 360px;
     height: 50px;
-    display: inline-block;
-    background-color: var(--color-green-primary);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     color: var(--color-bg-dark);
     padding: 11px 28px;
     border-radius: 30px;
     /* font-weight: 600; */
     font-size: var(--text-base);
     border: 1px solid #000000;
-    transition: all 0.2s ease;
+    transition: color 1s ease, border-color 1s ease;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: transparent;
 }
 
-.btn-outline-windows:hover {
-    background-color: var(--color-green-primary);
+/* Pseudo-elementos base para el color de fondo original */
+.btn-primary::before, .btn-outline::before, .btn-outline-windows::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -2;
+}
+
+.btn-primary::before { background-color: var(--color-white); }
+.btn-outline::before, .btn-outline-windows::before { background-color: var(--color-green-primary); }
+
+/* Animación de llenado con curva desde abajo a color negro */
+.btn-primary::after, .btn-outline::after, .btn-outline-windows::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg-dark); /* Color negro al hover */
+    /* El truco: valores distintos para el eje horizontal / eje vertical */
+    border-radius: 50% 50% 0 0 / 250% 250% 0 0; 
+    z-index: -1;
+    /* transition con cubic-bezier muy marcado para el efecto de "campana estrecha" */
+    transition: top 0.8s cubic-bezier(0.85, 0, 0.15, 1), border-radius 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+/* Estado Hover: Sube el fondo negro y quita la curva dejándolo plano */
+.btn-primary:hover::after, .btn-outline:hover::after, .btn-outline-windows:hover::after {
+    top: 0;
+    border-radius: 0;
+}
+
+/* Cambia el color del texto y SVG a blanco sobre lo negro */
+.btn-primary:hover, .btn-outline:hover, .btn-outline-windows:hover {
     color: var(--color-white);
 }
 
@@ -305,8 +347,8 @@ ul, ol {
 /* HERO SECTION */
 #hero {
     /* margin-top compensa la navbar fija (64px de alto) */
-    margin-top: 64px;
-    padding: 30px 0 30px 0;
+    /* margin-top: 64px; */
+    padding: 110px 0 110px 0;
     background: var(--color-bg-page);
     overflow: hidden;          /* Evita que las burbujas generen scroll horizontal */
     min-height: calc(100vh - 64px);
@@ -318,7 +360,7 @@ ul, ol {
     width: 100%;              /* Se estira hasta el límite de max-width */
     max-width: var(--max-width-hero);
     margin: 0 auto;
-    padding: 80px 25px;
+    padding: 80px 180px;
     border-radius: 25px;
     display: grid;
     grid-template-columns: 1fr 1fr;   /* Dos columnas iguales */
@@ -328,6 +370,7 @@ ul, ol {
     background-size: cover;       /* La imagen cubre todo el contenedor */
     background-position: center;  /* Centrada */
     background-repeat: no-repeat; /* Sin repetición */
+    height: 650px;
 }
 
 /* COLUMNA IZQUIERDA */
@@ -481,32 +524,7 @@ ul, ol {
     flex-direction: column;
 }
 
-/* RESPONSIVO */
-@media (max-width: 768px) {
-    .hero-container {
-        grid-template-columns: 1fr;   /* Una sola columna en móvil */
-        text-align: center;
-        padding: 48px 25px;
-        gap: 40px;
-    }
 
-    .hero-subtitle {
-        max-width: 100%;
-    }
-
-    .hero-actions {
-        justify-content: center;
-    }
-
-    .hero-divider::before,
-    .hero-divider::after {
-        display: none;
-    }
-
-    .bubble-message  { top: 5%;   left: -2%; }
-    .bubble-reaction { bottom: 5%; left: -2%; }
-    .bubble-call     { top: 5%;   right: -2%; }
-}
 
 /* SECCION FRASES */
 #phrase {
@@ -522,7 +540,7 @@ ul, ol {
 
 #phrase p {
     font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-    font-weight: 400;
+    font-weight: 500;
     max-width: 900px;
     color: var(--color-text-dark);
     margin: 40px 0;
@@ -545,7 +563,7 @@ ul, ol {
 .feature-block {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 100px 25px;
+    padding: 100px 80px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -591,10 +609,11 @@ ul, ol {
 }
 
 .feature-title {
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    font-weight: 700;
+    font-size: clamp(2.0rem, 4.4vw, 3.5rem); /* Títulos mucho más grandes */
+    font-weight: 400; /* Letra un poco más delgada */
     color: var(--color-text-dark);
-    line-height: 1.2;
+    line-height: 1.1; /* Interlineado más apretado */
+    letter-spacing: -1px; /* Letras ligeramente más juntas */
 }
 
 /* La palabra en cursiva dentro del título */
@@ -650,6 +669,14 @@ ul, ol {
     /* border-radius: 20px;  <- Eliminamos esto para no cortar transparencias si es un PNG */
     filter: drop-shadow(0 24px 40px rgba(0,0,0,0.1)); /* Usa el contorno real de la imagen */
     transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Regla para agrandar imágenes específicas un 20% (Aprox 57% * 1.2 y 460px * 1.2) */
+.feature-image img[src*="feature2"],
+.feature-image img[src*="feature3"],
+.feature-image img[src*="feature4"] {
+    width: 100%;
+    max-width: 600px;
 }
 
 .feature-image img:hover {
@@ -883,21 +910,97 @@ ul, ol {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* FOOTER RESPONSIVE */
-@media (max-width: 1024px) {
-    .footer-links-grid {
-        justify-content: flex-start;
-    }
+/* ==========================================================
+   ESTILOS RESPONSIVOS (Mobile First & Breakpoints)
+   ========================================================== */
+
+/* 1. TABLET LANDSCAPE / DESKTOP PEQUEÑO (≤ 1023px) */
+@media (max-width: 1023px) {
+    .hero-container { padding: 60px 40px; gap: 40px; height: auto; min-height: 500px; }
+    .feature-block, .feature-block.reverse { padding: 80px 40px; gap: 40px; }
+    .feature-image img[src*="feature2"], .feature-image img[src*="feature3"], .feature-image img[src*="feature4"] { width: 90%; }
+    .footer-links-grid { gap: 30px; justify-content: flex-start; }
 }
 
-@media (max-width: 900px) {
-    .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 30px;
-    }
+/* 2. TABLET PORTRAIT / MÓVIL (≤ 768px) */
+@media (max-width: 768px) {
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background-color: var(--color-bg-page); padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); gap: 15px; z-index: 999; }
+    .nav-links.open { display: flex; }
+    .nav-actions { display: none; }
+    .hamburger { display: flex; z-index: 1000; }
+
+    .hero-container { grid-template-columns: 1fr; text-align: center; padding: 60px 25px; gap: 50px; }
+    .hero-content { align-items: center; }
+    .hero-subtitle { max-width: 100%; }
+    .hero-actions { justify-content: center; width: 100%; }
+    .hero-divider::before, .hero-divider::after { display: none; }
+
+    .hero-graphics { min-height: 350px; margin-top: 20px; }
+    .float-msg1 { top: 0%; left: 0%; width: 200px; }
+    .float-sticker { top: 30%; right: 0%; width: 80px; }
+    .float-msg2 { top: 55%; right: 5%; width: 240px; }
+
+    .feature-block, .feature-block.reverse { grid-template-columns: 1fr; direction: ltr; text-align: center; gap: 40px; padding: 60px 25px; }
+    .feature-content { align-items: center; }
+    .feature-tag, .feature-link, .btn-outline-windows { margin-left: auto; margin-right: auto; }
     
-    .footer-social {
-        margin-left: 0;
-    }
+    .feature-image img, .feature-image img[src*="feature2"], .feature-image img[src*="feature3"], .feature-image img[src*="feature4"] { width: 100%; max-width: 400px; height: auto; }
+
+    .footer-top { flex-direction: column; align-items: center; text-align: center; }
+    .footer-brand { align-items: center; width: 100%; }
+    .footer-links-grid { justify-content: center; text-align: center; width: 100%; }
+    .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-social { justify-content: center; }
+}
+
+/* 3. MÓVIL GRANDE (≤ 480px) */
+@media (max-width: 480px) {
+    body, html { overflow-x: hidden; }
+    .hero-container { padding: 40px 15px; }
+    .feature-block, .feature-block.reverse { padding: 50px 15px; }
+
+    .hero-actions, .feature-content { flex-direction: column; }
+    .btn-primary, .btn-outline, .btn-outline-windows { width: 100%; max-width: 100%; margin-bottom: 15px; }
+
+    .feature-title { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+    #phrase p { font-size: clamp(1.5rem, 6vw, 2rem); }
+    
+    .hero-graphics { min-height: 250px; }
+    .float-msg1 { width: 170px; }
+    .float-sticker { width: 60px; top: 40%; }
+    .float-msg2 { width: 190px; top: 65%; right: 0; }
+    
+    .footer-links-grid { flex-direction: column; gap: 30px; }
+}
+
+/* 4. MÓVIL ESTÁNDAR (≤ 375px) */
+@media (max-width: 375px) {
+    .hero-title { font-size: 2.2rem; }
+    .btn-outline-windows { font-size: 0.85rem; padding: 10px 15px; height: auto; min-height: 50px; text-align: center; }
+    .hero-graphics { min-height: 200px; }
+    .float-msg1 { width: 140px; }
+    .float-msg2 { width: 160px; top: 50%; }
+}
+
+/* 5. MÓVIL MUY PEQUEÑO (≤ 320px) */
+@media (max-width: 320px) {
+    .nav-container { padding: 0 10px; }
+    .hero-container { padding: 30px 10px; }
+    .feature-block, .feature-block.reverse { padding: 30px 10px; }
+    .hero-title { font-size: 1.8rem; }
+    .feature-title { font-size: 1.5rem; }
+    #phrase p { font-size: 1.25rem; }
+}
+
+/* 6. LANDSCAPE MÓVIL (≤ 500px alto) */
+@media (max-height: 500px) and (orientation: landscape) {
+    #navbar { height: 60px; padding: 0; }
+    .nav-container { height: 60px; }
+    #hero { padding: 70px 0 40px; min-height: auto; }
+    .hero-container { padding: 20px 25px; gap: 20px; height: auto; }
+    .hero-graphics { min-height: 150px; }
+    .float-msg1 { width: 150px; top: 0; }
+    .float-sticker { width: 60px; top: 10%; right: 10%; }
+    .float-msg2 { width: 180px; top: 50%; }
+    .feature-block, .feature-block.reverse { padding: 40px 25px; }
 }
