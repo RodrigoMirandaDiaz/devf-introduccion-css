@@ -366,7 +366,7 @@ ul, ol {
     grid-template-columns: 1fr 1fr;   /* Dos columnas iguales */
     align-items: center;
     gap: 60px;
-    background-image: url('../media/hero.png');
+    background-image: url('./media/hero.png');
     background-size: cover;       /* La imagen cubre todo el contenedor */
     background-position: center;  /* Centrada */
     background-repeat: no-repeat; /* Sin repetición */
